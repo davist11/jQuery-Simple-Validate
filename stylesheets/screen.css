@@ -1,0 +1,52 @@
+html,
+body,
+ol { margin: 0; padding: 0; }
+body { font: 14px/20px Helvetica, Arial, sans-serif; }
+#container { margin: 20px auto 0; width: 600px; }
+.forms { list-style: none; }
+.forms li {
+  background: #efefef;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  -moz-border-radius: 5px;
+  overflow: hidden;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  width: 578px;
+}
+.forms .buttons { text-align: right; }
+.forms label {
+  cursor: pointer;
+  display: block;
+  float: left;
+  font-size: 20px;
+  line-height: 32px;
+  width: 125px;
+}
+input,
+textarea {
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  font: inherit;
+  margin: 0;
+  -moz-border-radius: 5px;
+  outline: none;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  width: 441px;
+}
+input:focus,
+textarea:focus {
+  border-color: #666;
+}
+textarea {
+  height: 200px;
+}
+em.error {
+  clear: both;
+  color: #f00;
+  display: block;
+  font-size: 12px;
+  margin: 5px 0 0 125px;
+}

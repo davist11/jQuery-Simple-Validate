@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8" />
+<title>Simple Form Validation</title>
+<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+<link href="stylesheets/screen.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+<div id="container">
+  <h1>Simple Form Validation</h1>
+  <form action="thanks.htm" class="required-form" method="post">
+  	<ol class="forms">
+  		<li><label for="name"><em class="required">*</em> Name</label><input type="text" name="name" id="name" class="required" title="Fill me in" /></li>
+  		<li><label for="email"><em class="required">*</em> Email</label><input type="text" name="email" id="email" class="required email" /></li>
+  		<li><label for="website">Website</label><input type="text" name="website" id="website" /></li>
+  		<li><label for="comment"><em class="required">*</em> Comment</label><textarea name="comment" id="comment" class="required"></textarea></li>
+  		<li class="buttons"><button type="submit">Submit</button></li>
+  </form>
+</div>
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/jquery.simpleValidate.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('form.required-form').simpleValidate({
+	  errorElement: 'em',
+	  ajaxRequest: true,
+	  completeCallback: function($el) {
+      var formData = $el.serialize();
+      alert('Do some AJAX if you want: ' + formData);
+	    return false;
+	  }
+	});
+});
+</script>
+</body>
+</html>
