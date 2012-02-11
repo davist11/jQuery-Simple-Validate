@@ -49,7 +49,7 @@
 					//alert(fieldValue);
 					if(fieldValue===false) {
 					//alert(fieldValue);
-					  errorMsg = (errorMsgType > -1 ) ? errorMsg = o.errorText.replace('{label}',labelText) : errorMsg = o.errorText;
+					  errorMsg = (errorMsgType > -1 ) ? errorMsg = o.checkboxErrorText.replace('{label}',labelText) : errorMsg = o.checkboxErrorText;
 					  hasError = true;
 					}
 					//If there is an error, display it
@@ -120,6 +120,7 @@
 		errorText: '{label} is a required field.',
 		emailErrorText: 'Please enter a valid {label}',
 		numberErrorText: 'Please enter a valid number',
+		checkboxErrorText: 'Please check this',
 		errorElement: 'strong',
 		removeLabelChar: '*',
 		inputErrorClass: '',
