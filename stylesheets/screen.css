@@ -36,6 +36,11 @@ textarea {
   -webkit-border-radius: 5px;
   width: 441px;
 }
+input[type=checkbox]{
+float:left;
+width:20px;
+height:20px;
+}
 input:focus,
 textarea:focus {
   border-color: #666;
