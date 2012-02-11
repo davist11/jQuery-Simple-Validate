@@ -1,10 +1,10 @@
 This is a light-weight form validation plugin. All it does is check if a field is empty, or if an email field is a properly formatted email address.
 
-**IN VERSION 0.2**    
-To mark a field as valid, just add a class of **required** to the field.  
-To make sure the email is a valid email address, also add a class of **email** to the field.  
+**IN VERSION 0.2**   
+To mark a field as valid, just add a class of **required** to the field.    
+To make sure the email is a valid email address, also add a class of **email** to the field.   
 To make field accept only number, add a class of **number** to the field.  
-Now you can also make checkbox required by adding required class to it, helpful for compulsory agreement accept checkboxes  
+Now you can also make checkbox required by adding required class to it, helpful for compulsory agreement accept checkboxes   
 Then, just call the plugin on the form.
 
 ### Defaults:
