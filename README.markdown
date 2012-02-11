@@ -12,6 +12,8 @@ Then, just call the plugin on the form.
   errorClass: 'error', //Class for the error message text  
   errorText: '{label} is a required field.', //Structure for the error message text, {label} will be replaced with the associated label text  
   emailErrorText: 'Please enter a valid {label}', //Structure for the email error message text, {label} will be replaced with the associated label text  
+  numberErrorText: 'Please enter a valid number', //Structure for the number only error message text   
+  checkboxErrorText: 'Please check this', //Structure for the checkbox required error message text    
   errorElement: 'strong', //Element to use for the error message text  
   removeLabelChar: '*', //If there is an extra character in the label to denote a required field, strip it out  
   inputErrorClass: '', //Class to add to an input when it is marked as having an error  
