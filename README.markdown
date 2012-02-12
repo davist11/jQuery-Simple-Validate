@@ -1,4 +1,6 @@
-This is a light-weight form validation plugin. All it does is check if a field is empty, or if an email field is a properly formatted email address.
+This is a light-weight form validation plugin, just 2.1kb minified (under 800 bytes gzipped).     
+It can validate required field, email, number only field, password and password confirmation matching.  
+
 
 **IN VERSION 0.2**   
 To mark a field as valid, just add a class of **required** to the field.    
