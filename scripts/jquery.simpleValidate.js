@@ -30,9 +30,6 @@
 					o = $.meta ? $.extend({}, opts, $this.data()) : opts,
 					errorMsgType = o.errorText.search(/{label}/);
 			
-		if($this.is('.hasError')){
-			alert("has error");
-		}
 			//When the form is submitted
 			$this.bind('submit', function(e) {
 				var hasError = false;
@@ -43,40 +40,48 @@
 				
 				$this.find(':checkbox.required').each(function() {
 					var $input = $(this),
-							fieldValue = $input.is(':checked'),
-							labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
-							errorMsg = '';
-					//alert(fieldValue);
+						fieldValue = $input.is(':checked'),
+						labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
+						errorMsg = '';
 					if(fieldValue===false) {
-					//alert(fieldValue);
-					  errorMsg = (errorMsgType > -1 ) ? errorMsg = o.checkboxErrorText.replace('{label}',labelText) : errorMsg = o.checkboxErrorText;
-					  hasError = true;
+						errorMsg = (errorMsgType > -1 ) ? errorMsg = o.checkboxErrorText.replace('{label}',labelText) : errorMsg = o.checkboxErrorText;
+						hasError = true;
 					}
 					//If there is an error, display it
-					if(errorMsg !== '') {
-					  $input.addClass(o.inputErrorClass).after('<'+o.errorElement+' class="'+o.errorClass+'">' + errorMsg + '</'+o.errorElement+'>');
-					  $this.addClass('hasError');
-					}
+					showError(errorMsg,$input);
 				});
 				
-				$this.find(':text.number').each(function() {
+				$this.find(':input.number').each(function() {
 					var $input = $(this),
 						fieldValue = $.trim($input.val()),
 						labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
 						errorMsg = '';
 					if(isNaN(fieldValue)) {
-					  errorMsg = (errorMsgType > -1 ) ? errorMsg = o.numberErrorText : errorMsg = o.errorText;
+					  errorMsg = (errorMsgType > -1 ) ? o.numberErrorText.replace('{label}',labelText) : o.numberErrorText;
 					  hasError = true;
 					}
 					//If there is an error, display it
-					if(errorMsg !== '') {
-					  $input.addClass(o.inputErrorClass).after('<'+o.errorElement+' class="'+o.errorClass+'">' + errorMsg + '</'+o.errorElement+'>');
-					  $this.addClass('hasError');
-					}
+					showError(errorMsg,$input);
+				});
+				
+				$this.find(':input.email').each(function() {
+					var $input = $(this),
+						fieldValue = $.trim($input.val()),
+						labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
+						errorMsg = '';
+						if(fieldValue){
+							if(!(/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(fieldValue))) {
+								errorMsg = (errorMsgType > -1 ) ? o.emailErrorText.replace('{label}',labelText) : o.emailErrorText;
+								hasError = true;
+							}
+						}
+					
+					//If there is an error, display it
+					showError(errorMsg,$input);
 				});
 				
 				//Get all the required inputs
-				$this.find(':text.required,textarea.required').each(function() {
+				$this.find(':input.required').each(function() {
 					var $input = $(this),
 							fieldValue = $.trim($input.val()),
 							labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
@@ -84,23 +89,25 @@
 					
 					//Check if it's empty or an invalid email
 					if(fieldValue === '') {
-					  errorMsg = (errorMsgType > -1 ) ? errorMsg = o.errorText.replace('{label}',labelText) : errorMsg = o.errorText;
+					  errorMsg = (errorMsgType > -1 ) ? o.errorText.replace('{label}',labelText) : o.errorText;
 						hasError = true;
-					} else if($input.hasClass('email')) {
-					  if(!(/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(fieldValue))) {
-					    errorMsg = (errorMsgType > -1 ) ? errorMsg = o.emailErrorText.replace('{label}',labelText) : errorMsg = o.emailErrorText;
-					    hasError = true;
-					  }
-					  } else if($input.hasClass('confirm-password')) {
-						
-					  } 
-					
+					} else if($input.hasClass('confirm-password')) {
+						var $password = $this.find('.password').val();
+						if($password!=fieldValue){
+							errorMsg = o.passwordErrorText;
+							hasError = true;
+						}
+					} 
 					//If there is an error, display it
+					showError(errorMsg,$input);
+				});
+				
+				function showError(errorMsg,$input){
 					if(errorMsg !== '') {
 					  $input.addClass(o.inputErrorClass).after('<'+o.errorElement+' class="'+o.errorClass+'">' + errorMsg + '</'+o.errorElement+'>');
 					  $this.addClass('hasError');
 					}
-				});
+				}
 				
 				if(hasError) { //Don't submit the form if there are errors
 					e.preventDefault();
@@ -119,9 +126,10 @@
 		errorClass: 'error',
 		errorText: '{label} is a required field.',
 		emailErrorText: 'Please enter a valid {label}',
-		numberErrorText: 'Please enter a valid number',
+		numberErrorText: '{label} needs to be a valid number',
 		checkboxErrorText: 'Please check this',
-		errorElement: 'strong',
+		passwordErrorText: 'Passwords doesn\'t match',
+		errorElement: 'em',
 		removeLabelChar: '*',
 		inputErrorClass: '',
 		completeCallback: '',
