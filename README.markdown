@@ -4,6 +4,7 @@ This is a light-weight form validation plugin. All it does is check if a field i
 To mark a field as valid, just add a class of **required** to the field.    
 To make sure the email is a valid email address, also add a class of **email** to the field.   
 To make field accept only number, add a class of **number** to the field.  
+To make password and password confirmation, add a class of **password** to the password field and **confirm-password** to the confirm password field, error displayed if both doesn't match.     
 Now you can also make checkbox required by adding required class to it, helpful for compulsory agreement accept checkboxes   
 Then, just call the plugin on the form.
 
@@ -14,6 +15,7 @@ Then, just call the plugin on the form.
   emailErrorText: 'Please enter a valid {label}', //Structure for the email error message text, {label} will be replaced with the associated label text  
   numberErrorText: 'Please enter a valid number', //Structure for the number only error message text   
   checkboxErrorText: 'Please check this', //Structure for the checkbox required error message text    
+  passwordErrorText: 'Passwords doesn\'t match', //Structure for the password confirmation error message text     
   errorElement: 'strong', //Element to use for the error message text  
   removeLabelChar: '*', //If there is an extra character in the label to denote a required field, strip it out  
   inputErrorClass: '', //Class to add to an input when it is marked as having an error  
