@@ -7,13 +7,16 @@
  * Uses the same license as jQuery, see:
  * http://jquery.org/license
  *
- * @version 0.2
+ * @version 0.3
  *
  * Example usage:
  * $('form.required-form').simpleValidate({
  *   errorClass: 'error',
  *   errorText: '{label} is a required field.',
  *   emailErrorText: 'Please enter a valid {label}',
+ *	 numberErrorText: '{label} needs to be a valid number',
+ *	 checkboxErrorText: 'Please check this',
+ *	 passwordErrorText: 'Passwords doesn\'t match',
  *   errorElement: 'strong',
  *   removeLabelChar: '*',
  *   inputErrorClass: '',
@@ -70,7 +73,7 @@
 						labelText = $input.siblings('label').text().replace(o.removeLabelChar, ''),
 						errorMsg = '';
 						if(fieldValue){
-							if(!(/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(fieldValue))) {
+							if(!(/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(fieldValue.toLowerCase()))) {
 								errorMsg = (errorMsgType > -1 ) ? o.emailErrorText.replace('{label}',labelText) : o.emailErrorText;
 								hasError = true;
 							}
