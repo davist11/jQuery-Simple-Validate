@@ -2,7 +2,7 @@ This is a light-weight form validation plugin, just 2.1kb minified (under 800 by
 It can validate required field, email, number only field, password and password confirmation matching.  
 
 
-**IN VERSION 0.2**   
+**IN VERSION 0.3**   
 To mark a field as valid, just add a class of **required** to the field.    
 To make sure the email is a valid email address, also add a class of **email** to the field.   
 To make field accept only number, add a class of **number** to the field.  
