@@ -1,6 +1,6 @@
 This is a light-weight form validation plugin. All it does is check if a field is empty, or if an email field is a properly formatted email address.
 
-To mark a field as valid, just add a class of **required** to the field. To make sure the email is a valid email address, also add a class of **email** to the field. Then, just call the plugin on the form.
+To mark a field as required, just add a class of **required** to the field. To make sure the email is a valid email address, also add a class of **email** to the field. Then, just call the plugin on the form.
 
 ### Defaults:
 <pre>$('form.required-form').simpleValidate({  
