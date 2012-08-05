@@ -54,6 +54,7 @@
 			
 			// What type of error message is it
 			self.errorMsgType = self.config.errorText.search(/{label}/);
+			self.emailErrorMsgType = self.config.emailErrorText.search(/{label}/);
 			
 			self.$elem.on('submit.simpleValidate', $.proxy(self.handleSubmit, self));
 
@@ -69,11 +70,11 @@
 			
 			//Check if it's empty or an invalid email and format the error message
 			if(fieldValue === '') {
-				errorMsg = self.formatErrorMsg(self.config.errorText, labelText);
+				errorMsg = self.formatErrorMsg(self.config.errorText, labelText, self.errorMsgType);
 				self.hasError = true;
 			} else if($field.hasClass('email')) {
 				if(!(/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(fieldValue.toLowerCase()))) {
-					errorMsg = self.formatErrorMsg(self.config.emailErrorText, labelText);
+					errorMsg = self.formatErrorMsg(self.config.emailErrorText, labelText, self.emailErrorMsgType);
 					self.hasError = true;
 				}
 			}
@@ -84,8 +85,8 @@
 			}
 		},
 		
-		formatErrorMsg: function(errorText, labelText) {
-			return (this.errorMsgType > -1 ) ? errorText.replace('{label}', labelText) : errorText;
+		formatErrorMsg: function(errorText, labelText, errorMsgType) {
+			return (errorMsgType > -1 ) ? errorText.replace('{label}', labelText) : errorText;
 		},
 		
 		handleSubmit: function(e) {
@@ -105,7 +106,7 @@
 			if(self.hasError) { 
 				e.preventDefault();
 			} else if(self.config.completeCallback !== '') { // If there is a callback
-				self.config.completeCallback(this.$elem);
+				self.config.completeCallback(self.$elem);
 				
 				// If AJAX request
 				if(self.config.ajaxRequest) {
