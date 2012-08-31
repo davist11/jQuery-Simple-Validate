@@ -40,7 +40,7 @@
 			emailErrorText: 'Please enter a valid {label}',
 			errorElement: 'strong',
 			removeLabelChar: '*',
-			inputErrorClass: '',
+			inputErrorClass: 'input-error',
 			completeCallback: '',
 			ajaxRequest: false
 		},
@@ -97,7 +97,7 @@
 			
 			// Reset existing displayed errors
 			self.$elem.find(self.config.errorElement + '.' + self.config.errorClass).remove();
-			self.$elem.find(':input.' + self.config.inputErrorClass).removeClass(self.config.inputErrorClass);
+			self.$elem.find('input.' + self.config.inputErrorClass).removeClass(self.config.inputErrorClass);
 			
 			// Check each field
 			self.$requiredInputs.each($.proxy(self.checkField, self));
